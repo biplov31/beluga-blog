@@ -1,0 +1,337 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  color: #222;
+  font-family: 'Inria Sans', sans-serif;
+  background-color: #093739;
+}
+img {
+  max-width: 100%;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+div.page-container {
+  padding: 2rem 3rem;
+  max-width: 750px;
+  min-height: 100vh;
+  margin: 0 auto;
+  /* background-color: #ddd; */
+  background: rgb(170,210,212);
+background: linear-gradient(180deg, rgba(170,210,212,0.8524044313292573) 0%, rgba(9,55,57,1) 100%);
+  /* background-color: #2ed5db; */
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.4rem;
+}
+header a {
+  text-decoration: none;
+  color: inherit;
+}
+a.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  white-space: nowrap;
+}
+nav .username {
+  color: slateblue;
+  font-weight: 700;
+}
+nav .logout-btn {
+  font-size: inherit;
+  background-color: darkred;
+  padding: .2rem .4rem;
+}
+.logout-btn:hover {
+  outline: 2px solid darkred;
+  color: darkred;
+}
+main.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 95%;
+  margin: 0 auto;
+}
+div.post {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  box-shadow: 3px 2px 7px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  text-overflow: ellipsis;
+  background-color: hwb(180 80% 16%);
+}
+/* @media screen and (min-width: 768px) {
+  div.post {
+    grid-template-columns: 1fr 1fr;
+  }
+} */
+div.image-container {
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  height: 200px;
+}
+div.image-container img {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+  transition: all .5s linear;
+}
+div.post img:hover {
+  transform: scale(1.05);
+}
+div.post div.text-content {
+  padding-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  gap: 0.4rem;
+}
+div.post div.text-content h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+div.post-info {
+  color: #888;
+  display: flex;
+  gap: 0.6rem;
+}
+div.post-info a.author {
+  color: #333;
+  font-weight: 600;
+}
+div.post div.text-content p.summary {
+  text-align: justify;
+  margin-right: .5rem;
+}
+input {
+  padding: 5px;
+  border: none;
+  border-radius: 3px;
+  background-color: rgba(238, 238, 238, 0.5);
+  border-bottom: 2px solid #ccc;
+  font-family: inherit;
+  font-size: inherit;
+}
+input:focus {
+  outline: none;
+  box-shadow: 3px 1px 4px #ccc;
+}
+.register-form, .login-form {
+  width: 70%;
+  margin: 3rem auto;
+  border-radius: 3px;
+  border: 2px solid #333;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.register-form h2, .login-form h2 {
+  text-transform: uppercase;
+  letter-spacing: .3rem;
+  margin-bottom: 1rem;
+}
+.register-form label, .login-form label {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+.register-form input, .login-form input {
+  width: 70%;
+}
+button {
+  padding: .5rem;
+  width: 25%;
+  border-radius: 3px;
+  background-color: #555;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: all .1s ease-in;
+  font-family: inherit;
+  font-size: 1.1rem;
+}
+button:hover {
+  outline: 2px solid #555;
+  color: #555;
+  background-color: #eee;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  margin-bottom: 1rem;
+  white-space: nowrap;
+  background-color: rgba(211, 220, 220, 0.8);
+}
+form > button {
+  margin-top: 1rem;
+  align-self: center;
+}
+form > input {
+  outline: 1px solid rgba(0, 0, 0, .2);
+  border: none;
+  border-radius: 0;
+  background-color: #fff;
+}
+form > input[type="file"] {
+  width: 45%;
+}
+.quill {
+  background-color: #fff;
+}
+.edit-form button {
+  margin: 0.1rem;
+}
+.edit-form .cancel-btn {
+  background-color: #eee;
+  border: 2px solid #555;
+  color: #555;
+  opacity: 0.9;
+}
+.edit-form .cancel-btn:hover {
+  outline: none;
+  opacity: 1;
+  color: #000;
+  border: 2px solid #000;
+}
+.error-container {
+  color: rgb(225, 49, 49);
+  font-size: .9rem;
+  margin: 0;
+  padding: 0;
+}
+div.post-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+}
+div.post-container div.post-image {
+  height: 50vh;
+  margin-bottom: 1.4rem;
+}
+div.post-image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+div.post-container div.post-title {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+div.post-title h1 {
+  color: #ccc;
+}
+div.post-title a {
+  color: #bbb;
+  font-weight: bold;
+}
+div.post-title time {
+  font-size: .8rem;
+  color: #bbb;
+}
+div.post-container div.post-content {
+  text-align: justify;
+  color: #ddd;
+}
+div.post-btn {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 2rem;
+}
+.edit-btn, .delete-btn {
+  background: #555;
+  color: #fff;
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .1rem;
+  width: 13%;
+  font-size: .7rem;
+  padding: .3rem;
+  margin: 0;
+  transition: background-color .1s ease-in;
+}
+.edit-btn:hover, .delete-btn:hover {
+  outline: 1.5px solid #555;
+  color: #000;
+  background: none;
+}
+.edit-btn svg, .delete-btn svg {
+  height: 1rem;
+}
+.confirm-dialogue {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background-color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.confirm-dialogue span {
+  font-weight: 700;
+}
+.confirm-delete-btn, .cancel-delete-btn {
+  width: 70%;
+  text-align: center;
+  padding: .5rem;
+  font-size: 1rem;
+}
+.confirm-dialogue .confirm-delete-btn {
+  border-radius: 3px;
+  background-color: darkred;
+  color: #eee;
+}
+.confirm-delete-btn:hover {
+  outline: 2px solid darkred;
+  color: darkred;
+  background-color: transparent;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10;
+}
+footer {
+  margin-top: 3rem;
+  text-align: center;
+  color: #ccc;
+}
