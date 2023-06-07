@@ -33,16 +33,16 @@ function App() {
           />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/create" element={<CreatePost />} />
+          <Route path="/createpost" element={<CreatePost />} />
           <Route 
-            path="/post/:id" 
+            path="/getpost/:id" 
             element={
               <Suspense fallback={<SkeletonPost />}>
                 <LazyPostPage />
               </Suspense>
             } 
           />
-          <Route path="/edit/:id" element={<EditPost />} />
+          <Route path="/editpost/:id" element={<EditPost />} />
         </Route>
       </Routes>
     </UserContextProvider>

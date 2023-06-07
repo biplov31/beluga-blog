@@ -4,6 +4,11 @@ const User = require('../models/User');
 
 const registerUser = (async (req, res) => {
   const { username, password } = req.body;
+  // const userExists = await User.findOne({username});
+  // if (userExists) {
+  //   return res.status(400).json("Username already exists.");
+  // }
+
   try {
     const user = await User.create({
       username,
@@ -33,7 +38,7 @@ const loginUser = (async (req, res) => {
 
 const logoutUser = (async (req, res) => {
   // clearCookie() only works if we pass the same options parameter (sameSite, secure) as we did when we created the token during login
-  res.clearCookie('access_token', {sameSite: 'none', secure: true}).redirect('/posts');  
+  res.clearCookie('access_token', {sameSite: 'none', secure: true}).redirect('/post/');  
 })
 
 module.exports = {

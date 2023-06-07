@@ -33,7 +33,7 @@ export default function Post({_id, title, content, image, createdAt, author}) {
   return (
     <div className="post">
       <div className="image-container">
-        <Link to={`/post/${_id}`}>
+        <Link to={`/getpost/${_id}`}>
           <img 
             src={""} 
             data-src={`http://localhost:4000/${image}`} 
@@ -46,7 +46,7 @@ export default function Post({_id, title, content, image, createdAt, author}) {
         </Link>
       </div>
       <div className="text-content">
-        <Link to={`/post/${_id}`}>
+        <Link to={`/getpost/${_id}`}>
           <h2>{title}</h2>
         </Link>
         <div className="post-info">

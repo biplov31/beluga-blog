@@ -14,8 +14,8 @@ export default function RegisterPage() {
     e.preventDefault();
     const response = await fetch('http://localhost:4000/register', {
       method: 'POST',
-      body: JSON.stringify({username, password}),
       headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({username, password}),
       credentials: 'include',
       mode: 'cors'
     })

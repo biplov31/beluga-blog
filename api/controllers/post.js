@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const Post = require('../models/Post');
+const Comment = require('../models/Comment');
 
 const getAllPosts = (async (req, res) => {
   res.json(
@@ -80,10 +81,39 @@ const deletePost = (async (req, res) => {
   })
 })
 
+const addComment = (async (req, res) => {
+  console.log(req.body);
+  const { access_token } = req.cookies;
+  jwt.verify(access_token, process.env.JWT_SECRET, {}, async (err, info) => {
+    if (err) throw err;
+    const { comment, userId, postId } = req.body;
+    const commentDoc = await Comment.create({
+      comment,
+      postId,
+      author: userId
+    })
+    res.json(commentDoc);
+  })
+})
+
+const getComments = (async (req, res) => {
+  const postId = req.params.postId
+  const commentDocs = await Comment.find({"postId": postId}).populate('author', ['username']);
+  res.json(commentDocs);
+})
+
+const deleteComment = (async (req, res) => {
+  await Comment.deleteOne({"_id": req.body.commentToDelete});
+  res.json("Comment deleted successfully.");
+})
+
 module.exports = {
   getAllPosts,
   getPost,
   createPost,
   editPost,
-  deletePost
+  deletePost,
+  addComment,
+  getComments,
+  deleteComment
 }
