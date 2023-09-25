@@ -1,9 +1,12 @@
+import { Link } from "react-router-dom";
 export default function Footer() {
 
   return (
     <footer>
-      <a href="/" className="logo">MyBlog</a>
-      <p>&copy; 2023 MyBlog. All rights reserved.</p>
+      <p>&copy; 2023 Beluga. All rights reserved.</p>
+      <Link to='/'>
+        <img src="../public/beluga.png" alt="Beluga" />
+      </Link>
     </footer>
   )
 }

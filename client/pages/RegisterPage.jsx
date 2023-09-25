@@ -45,8 +45,8 @@ export default function RegisterPage() {
     <form className="register-form" onSubmit={handleRegister}>
       <h2>Register</h2>
       {error && <div className="error-container">{error}</div>}
-      <label>Username: <input type="text" value={username} onChange={e => setUsername(e.target.value)} /></label>
-      <label>Password: <input type="password" value={password} onChange={e => setPassword(e.target.value)} /></label>
+      <label>Username: <input type="text" value={username} onChange={e => setUsername(e.target.value)} required /></label>
+      <label>Password: <input type="password" value={password} onChange={e => setPassword(e.target.value)} required /></label>
       <label>Confirm password: <input type="password" value={rePassword} onChange={e => setRePassword(e.target.value)} onBlur={comparePasswords} /></label>
       <button>Register</button>
     </form>

@@ -17,20 +17,20 @@ a {
   cursor: pointer;
 }
 div.page-container {
-  padding: 2rem 3rem;
-  max-width: 800px;
+  padding: 2rem;
+  max-width: max(70%, 600px); /* if the current 70% is smaller than 600px, use 600px i.e. use 70% only for screen larger than 600px */
   min-height: 100vh;
   margin: 0 auto;
   /* background-color: #ddd; */
-  background: rgb(170,210,212);
-background: linear-gradient(180deg, rgba(170,210,212,0.8524044313292573) 0%, rgba(9,55,57,1) 100%);
+  /* background: rgb(170,210,212); */
+  background: linear-gradient(180deg, rgba(170,210,212,0.8524044313292573) 0%, rgb(66, 169, 175) 100%);
   /* background-color: #2ed5db; */
 }
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.4rem;
+  margin-bottom: 2rem;
 }
 header a {
   text-decoration: none;
@@ -39,18 +39,43 @@ header a {
   border-radius: 3px;
   transition: box-shadow .2s ease-out;
 }
-header a:hover {
+header a:hover:not(.logo) {
   box-shadow: -5px -5px 9px #e9e7e773, 5px 5px 7px #5e687949;
 }
 a.logo {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: bold;
+  color: #093739;
+  /* box-shadow: -5px -5px 9px #e9e7e773, 5px 5px 7px #5e687949; */
+  position: relative;
+  transform: translateY(-20%);
+}
+.logo img {
+  width: 2.8rem;
+  position: absolute;
+  right: -.6rem;
+  bottom: -1.3rem;
+  transform: rotate(15deg);
+}
+.logo:hover img {
+  animation: beBeluga .8s linear;
+}
+@keyframes beBeluga {
+  0% {
+    transform: scale(1) rotate(15deg);
+  }
+  50% {
+    transform: scale(1.4) rotate(-195deg);
+  }
+  100% {
+    transform: scale(1) rotate(-345deg);
+  }
 }
 header nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 1.5rem;
   white-space: nowrap;
 }
 nav .username {
@@ -59,12 +84,16 @@ nav .username {
 }
 nav .logout-btn {
   font-size: inherit;
-  background-color: darkred;
-  padding: .2rem .4rem;
-}
-.logout-btn:hover {
+  background-color: transparent;
   outline: 2px solid darkred;
+  padding: .2rem .4rem;
   color: darkred;
+}
+main h1 {
+  font-size: 2rem;
+  text-align: center;
+  letter-spacing: 1px;
+  color: #333;
 }
 main.posts {
   display: flex;
@@ -75,7 +104,7 @@ main.posts {
 }
 div.post {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: .8fr 1fr;
   gap: 1rem;
   box-shadow: 3px 2px 7px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
@@ -106,6 +135,7 @@ div.post img:hover {
 }
 div.post div.text-content {
   padding-top: .5rem;
+  padding-right: .5rem;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -134,30 +164,23 @@ input {
   border: none;
   border-radius: 3px;
   background-color: rgba(238, 238, 238, 0.5);
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid rgb(22, 133, 139);
   font-family: inherit;
   font-size: inherit;
 }
 input:focus {
   outline: none;
-  box-shadow: 3px 1px 4px #ccc;
+  box-shadow: 3px 1px 4px rgb(22, 133, 139);
 }
 button {
-  padding: .5rem;
-  width: 25%;
+  padding: .5rem 1rem;
+  width: fit-content;
   border-radius: 3px;
-  background-color: #555;
-  color: #fff;
   border: none;
   cursor: pointer;
   transition: all .1s ease-in;
   font-family: inherit;
   font-size: 1.1rem;
-}
-button:hover {
-  outline: 2px solid #555;
-  color: #555;
-  background-color: #eee;
 }
 form {
   display: flex;
@@ -167,7 +190,7 @@ form {
   white-space: nowrap;
   background-color: rgba(211, 220, 220, 0.8);
 }
-form > button {
+form button {
   margin-top: 1rem;
   align-self: center;
 }
@@ -175,70 +198,63 @@ form > input {
   outline: 1px solid rgba(0, 0, 0, .2);
   border: none;
   border-radius: 0;
-  background-color: #fff;
+  background-color: #eee;
 }
 form > input[type="file"] {
   width: 45%;
 }
-.quill {
-  background-color: #fff;
-  /* width: 100%; */
+form.create-post, form.edit-post {
+  width: 95%;
+  margin: 0 auto;
+  background-color: #ddd;
+  padding: 1rem .5rem;
 }
-.register-form, .login-form {
-  width: 70%;
-  margin: 3rem auto;
-  border-radius: 3px;
-  border: 2px solid #333;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
+form.create-post input {
+  background-color: #eee;
 }
-.register-form h2, .login-form h2 {
-  text-transform: uppercase;
-  letter-spacing: .3rem;
-  margin-bottom: 1rem;
+.form-submit-btn {
+  background-color: #093739;
+  color: #ddd;
 }
-.register-form label, .login-form label {
-  width: 90%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 1rem;
+.form-submit-btn:hover {
+  outline: 2px solid #555;
+  color: #093739;
+  background-color: #ddd;
 }
-.register-form input, .login-form input {
-  width: 70%;
-}
-.edit-form button {
+form.edit-post button {
   margin: 0.1rem;
 }
-.edit-form .cancel-btn {
+.quill {
   background-color: #eee;
-  border: 2px solid #555;
-  color: #555;
-  opacity: 0.9;
+  /* width: 100%; */
 }
-.edit-form .cancel-btn:hover {
-  outline: none;
-  opacity: 1;
-  color: #000;
-  border: 2px solid #000;
+.quill .ql-toolbar {
+  background-color: #ccc;
+  padding: .5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.error-container {
-  color: rgb(225, 49, 49);
-  font-size: .9rem;
+.ql-toolbar span.ql-formats {
+  margin: 0 !important;
+}
+.ql-toolbar button {
   margin: 0;
-  padding: 0;
+}
+.quill .ql-container {
+  height: 50dvh;
+  font-family: inherit;
 }
 div.post-container {
+  width: 95%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   justify-content: center;
 }
 div.post-container div.post-image {
+  min-height: 20rem;
   height: 50vh;
 }
 div.post-image img {
@@ -253,19 +269,20 @@ div.post-container div.post-title {
   text-align: center;
 }
 div.post-title h1 {
-  color: #ccc;
+  color: #333;
 }
 div.post-title a {
-  color: #bbb;
+  color: #444;
   font-weight: bold;
 }
 div.post-title time {
   font-size: .8rem;
-  color: #bbb;
+  color: #555;
 }
 div.post-container div.post-content {
   text-align: justify;
-  color: #ddd;
+  color: #333;
+  font-size: 1.1rem;
 }
 div.post-btn {
   display: flex;
@@ -300,7 +317,7 @@ div.post-btn {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
-  background-color: white;
+  background-color: #eee;
   padding: 1rem 2rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   display: flex;
@@ -311,14 +328,12 @@ div.post-btn {
 .confirm-dialogue span {
   font-weight: 700;
 }
-.confirm-delete-btn, .cancel-delete-btn {
-  width: 70%;
-  text-align: center;
-  padding: .5rem;
-  font-size: 1rem;
+.confirm-delete-btn, .cancel-btn {
+  padding: .6rem 1.5rem;
+  background-color: #bbb;
 }
 .confirm-dialogue .confirm-delete-btn {
-  border-radius: 3px;
+  padding: .6rem 1.5rem;
   background-color: darkred;
   color: #eee;
 }
@@ -342,7 +357,7 @@ section.comment-section {
 .comment-section h2 {
   text-align: center;
   letter-spacing: 2px;
-  color: #bbb;
+  color: #333;
 }
 .comment-form {
   background-color: transparent;
@@ -357,20 +372,24 @@ section.comment-section {
   font-size: .9rem;
   resize: none;
   height: 3.5rem;
+  background-color: #eee;
 }
 .comment-form textarea:focus {
-  outline: none;
+  outline: 2px solid #555;
 }
 .comment-form button {
-  width: 20%;
-  margin: .2rem;
-  background-color: #ccc;
-  color: #333;
+  padding: .3rem .8rem;
+  width: fit-content;
+  margin: 0rem;
+  background-color: #093739;
+  color: #ddd;
+  font-size: 1rem;
   font-weight: 600;
-  padding: .3rem;
 }
 .comment-form button:hover {
-  filter: invert(1);
+  outline: 1.5px solid #555;
+  color: #093739;
+  background-color: #ddd;
 }
 .comment-form button:disabled {
   /* cursor: not-allowed; */
@@ -380,14 +399,17 @@ div.comment-container {
   width: 95%;
   margin: 2rem auto 0 auto;
   text-align: justify;
-  color: #ccc;
+  color: #ddd;
   background-color: hsl(0, 0%, 20%, 0.5);
-  border: 1.4px solid #888;
+  border: 1.4px solid #bbb;
+  border-radius: 6px;
   /* box-shadow: rgba(255, 255, 255, 0.12) 0px 1px 3px, rgba(255, 255, 255, 0.24) 0px 1px 2px; */
 }
 .comment-container .comment {
-  border-block: 1.4px solid #888;
-  padding: .4rem .6rem;
+  padding: .4rem .8rem;
+}
+.comment-container .comment:not(:last-child) {
+  border-bottom: 1.4px solid #aaa;
 }
 .comment-info {
   display: flex;
@@ -409,8 +431,53 @@ div.comment-container {
   margin-left: .5rem;
   font-size: .8rem;
 }
+.register-form, .login-form {
+  width: 75%;
+  margin: 3rem auto;
+  border-radius: 3px;
+  /* border: 2px solid #333; */
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.register-form h2, .login-form h2 {
+  text-transform: uppercase;
+  letter-spacing: .3rem;
+  margin-bottom: 1rem;
+}
+.register-form label, .login-form label {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.register-form input, .login-form input {
+  width: 70%;
+}
+.register-form button, .login-form button {
+  background-color: #093739;
+  color: #fff;
+}
+.register-form button:hover, .login-form button:hover {
+  outline: 2px solid #093739;
+  color: #093739;
+  background-color: #eee;
+}
+.error-container {
+  color: rgb(225, 49, 49);
+  font-size: .9rem;
+  margin: 0;
+  padding: 0;
+}
 footer {
-  margin-top: 3rem;
+  margin-top: 4rem;
   text-align: center;
-  color: #ccc;
+}
+footer img {
+  margin-top: .4rem;
+  width: 3rem;
 }

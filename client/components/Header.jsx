@@ -49,7 +49,10 @@ export default function Header() {
 
   return (
     <header>
-      <a href="/" className="logo">MyBlog</a>
+      <Link to="/" className="logo">
+        Beluga
+        <img src="../public/beluga (1).png" alt="Beluga" />
+      </Link>
       <nav>
         {username && (
           <>

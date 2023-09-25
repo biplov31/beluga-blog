@@ -41,15 +41,15 @@ export default function EditPost() {
   }
 
   if (redirect) {
-    return <Navigate to={'/post/'+id} />
+    return <Navigate to={'/getpost/'+id} />
   }
 
   return (
-    <form onSubmit={updatePost} className="edit-form">
+    <form onSubmit={updatePost} className="edit-post">
       <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" />
       <input type="file" onChange={e => setFiles(e.target.files)} />
       <Editor value={content} handleChange={setContent} />
-      <button>Edit post</button>
+      <button className="form-submit-btn">Edit post</button>
       <button className="cancel-btn" onClick={() => navigate(-1)}>Cancel</button>
     </form>
   )

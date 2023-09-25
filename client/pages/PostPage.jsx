@@ -109,8 +109,8 @@ export default function PostPage() {
 
       {showDialogue && <div className="confirm-dialogue">
         <span>Are you sure you want to delete this post?</span>
-        <button className="confirm-delete-btn delete-btn" onClick={handleDelete}>Delete</button>
-        <button className="cancel-delete-btn" onClick={() => setShowDialogue(false)}>Cancel</button>
+        <button className="confirm-delete-btn" onClick={handleDelete}>Delete</button>
+        <button className="cancel-btn" onClick={() => setShowDialogue(false)}>Cancel</button>
       </div>}
       {showDialogue && <div className="overlay" />}
 

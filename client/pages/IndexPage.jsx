@@ -40,6 +40,7 @@ export default function IndexPage() {
   
   return (
     <main className="posts">
+      <h1>Recent Posts</h1>
       {!posts.length > 0 && 
       [...Array(5).keys()].map(i => {
         return <SkeletonPost key={i} hasImage={false} textCount={3} />
