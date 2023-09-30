@@ -7,7 +7,7 @@ export default function IndexPage() {
 
   // when we mount our home page, we want to run this function
   useEffect(() => {
-    fetch('http://localhost:4000/post/').then(response => {
+    fetch('/post/').then(response => {
       response.json().then(data => {  // .json() and fetch are async functions so we need .then(), get request is default so we don't need to define a method on our fetch
         setPosts(data)
       })

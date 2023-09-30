@@ -21,7 +21,7 @@ export default function Header() {
   // }, []);
 
   useEffect(() => {
-    fetch('http://localhost:4000/user/profile', {
+    fetch('/user/profile', {
       credentials: 'include'
     }).then(response => {
       if (response.ok) {
@@ -33,7 +33,7 @@ export default function Header() {
   }, [])
 
   function handleLogout() {
-    fetch('http://localhost:4000/logout', {
+    fetch('/logout', {
       method: 'POST',
       credentials: 'include'
     }).then(response => {
@@ -51,7 +51,7 @@ export default function Header() {
     <header>
       <Link to="/" className="logo">
         Beluga
-        <img src="../public/beluga (1).png" alt="Beluga" />
+        <img src="/beluga (1).png" alt="Beluga" />
       </Link>
       <nav>
         {username && (

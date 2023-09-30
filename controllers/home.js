@@ -32,7 +32,7 @@ const loginUser = (async (req, res) => {
     const token_value = jwt.sign({username, id: user._id}, process.env.JWT_SECRET)
     res.cookie('access_token', token_value, {sameSite: 'none', secure: true}).json({id: user._id, username}) // Chrome dev tools - Network - login - Preview
   } else {
-    res.status(400).json('Login failed.');
+    res.status(400).json('Incorrect password.');
   }
 })
 

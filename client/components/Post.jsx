@@ -36,7 +36,7 @@ export default function Post({_id, title, content, image, createdAt, author}) {
         <Link to={`/getpost/${_id}`}>
           <img 
             src={""} 
-            data-src={`http://localhost:4000/${image}`} 
+            data-src={`/${image}`} 
             onLoad={() => setLoaded(true)}
             style={{
               filter: loaded ? 'blur(0px)' : 'blur(10px)',

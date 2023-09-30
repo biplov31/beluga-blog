@@ -15,18 +15,17 @@ export default function PostPage() {
   const params = useParams();
   // when this page mounts, we want to grab the information of the page
   useEffect(() => {
-    fetch(`http://localhost:4000/post/${params.id}`)
+    fetch(`/post/${params.id}`)
       .then(response => {
         response.json().then(postDoc => {
           setPostInfo(postDoc);
         }) 
       })
 
-    fetch(`http://localhost:4000/post/getComments/${params.id}`)
+    fetch(`/post/getComments/${params.id}`)
       .then(response => {
         response.json().then(commentsDoc => {
           setExistingComments(commentsDoc);
-          console.log(existingComments);
         })
       })
   }, [])
@@ -37,7 +36,7 @@ export default function PostPage() {
     // when using 'fetch', URL we pass is relative to the current domain that is hosting the application. 
     // when we use a relative URL like `/delete', the browser treats it as a URL relative to the current page's URL: if we're on the page 'http://localhost:3000/posts', the URL would resolve to 'http://localhost:3000/delete'. However, our server is running on a different port ('4000') than our frontend application ('3000').
     // thus we need to provide an absolute URL that includes the correct domain and port number for our server: 'http://localhost:4000/delete' to specify the full URL of our backend API endpoint
-    const response = await fetch(`http://localhost:4000/post/delete/${postInfo._id}`, {
+    const response = await fetch(`/post/delete/${postInfo._id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
@@ -59,7 +58,7 @@ export default function PostPage() {
     if (!comment) {
       return
     }
-    const response = await fetch (`http://localhost:4000/post/addComment`, {
+    const response = await fetch (`/post/addComment`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -73,7 +72,7 @@ export default function PostPage() {
   }
 
   const deleteComment = async (commentId) => {
-    const response = await fetch(`http://localhost:4000/post/deleteComment`, {
+    const response = await fetch(`/post/deleteComment`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
@@ -89,7 +88,7 @@ export default function PostPage() {
   return (
     <div className="post-container">
       <div className="post-image">
-        <img src={`http://localhost:4000/${postInfo.image}`} alt="" />
+        <img src={`/${postInfo.image}`} alt="" />
       </div>
 
       {userInfo?.id === postInfo.author._id && <div className="post-btn">

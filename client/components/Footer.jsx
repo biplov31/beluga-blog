@@ -5,7 +5,7 @@ export default function Footer() {
     <footer>
       <p>&copy; 2023 Beluga. All rights reserved.</p>
       <Link to='/'>
-        <img src="../public/beluga.png" alt="Beluga" />
+        <img src="/beluga.png" alt="Beluga" />
       </Link>
     </footer>
   )

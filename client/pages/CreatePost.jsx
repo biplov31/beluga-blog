@@ -18,7 +18,7 @@ export default function CreatePost() {
     data.set('file', files[0]);
 
     e.preventDefault();
-    const response = await fetch('http://localhost:4000/post/create', {
+    const response = await fetch('/post/create', {
       method: 'POST',
       body: data,
       credentials: 'include' // we have to send the cookie with our fetch request to the backend where we then get the id of the logged in user using the jwt token

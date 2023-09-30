@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const path = require('path');
 const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -20,13 +21,22 @@ app.use(cors({credentials: true, origin: 'http://127.0.0.1:5173'}));   // http:/
 //   next();
 // });
 app.use(cookieParser());
-app.use('/uploads', express.static(__dirname + '/uploads'));  // serving static images from our uploads folder
 
-app.use('/', homeRoutes);
+// app.use(express.static('dist')); // this is not JSX in the original file, it is just what was compiled at a point in time. If we make changes in our App.jsx this won't appear in the Express version of the application. So, we need to rebuild the app, and replace the current dist in the Express app with the new dist. 
+
+app.use('/uploads', express.static(__dirname + '/uploads/'));  // serving static images from our uploads folder
+
+app.use(express.static(path.join(__dirname, './client/dist')));
+app.get('*', (_, res) => {
+  res.sendFile(path.join(__dirname), './client/dist/index.html'), (err) => {res.status(500).send(err)};
+})
+
+app.use('/home', homeRoutes);
 app.use('/post', postRoutes);
 app.use('/user', userRoutes); 
 
-app.listen(4000, () => {
-  console.log('Server started on port 4000.');
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log(`Server started on port ${4000}.`);
 })
 
