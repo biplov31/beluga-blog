@@ -22,14 +22,14 @@ app.use(cors({credentials: true, origin: 'http://127.0.0.1:5173'}));   // http:/
 // });
 app.use(cookieParser());
 
-// app.use(express.static('dist')); // this is not JSX in the original file, it is just what was compiled at a point in time. If we make changes in our App.jsx this won't appear in the Express version of the application. So, we need to rebuild the app, and replace the current dist in the Express app with the new dist. 
+app.use(express.static('dist')); // this is not JSX in the original file, it is just what was compiled at a point in time. If we make changes in our App.jsx this won't appear in the Express version of the application. So, we need to rebuild the app, and replace the current dist in the Express app with the new dist. 
 
 app.use('/uploads', express.static(__dirname + '/uploads/'));  // serving static images from our uploads folder
 
-app.use(express.static(path.join(__dirname, './client/dist')));
-app.get('*', (_, res) => {
-  res.sendFile(path.join(__dirname), './client/dist/index.html'), (err) => {res.status(500).send(err)};
-})
+// app.use(express.static(path.join(__dirname, './client/dist')));
+// app.get('*', (_, res) => {
+//   res.sendFile(path.join(__dirname), './client/dist/index.html'), (err) => {res.status(500).send(err)};
+// })
 
 app.use('/home', homeRoutes);
 app.use('/post', postRoutes);
